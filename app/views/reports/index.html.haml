@@ -1,0 +1,13 @@
+= simple_form_for :report, url: generate_reports_path(format: :csv) do |f|
+  .form-group
+    = f.input :comment, as: :string, input_html: { maxlength: 160 }
+    = f.button :submit, "Generate report"
+
+%table.table
+  %tr
+    %th Generated at
+    %th Comment
+  - @reports.each do |report|
+    %tr
+      %td= report.generated_at
+      %td= report.comment
